@@ -5,6 +5,10 @@ services:
         ports: 
             - "8085:8085"
         restart: always
+
+        depends_on:
+            - auth-ms
+            - account-service
                                        
         networks:
             - app-network
@@ -14,6 +18,10 @@ services:
         ports: 
             - "8090:8090"
         restart: always
+
+        depends_on:
+            - auth-ms
+            - account-service
        
         networks:
             - app-network
@@ -31,6 +39,9 @@ services:
         ports: 
             - "8087:8087"
         restart: always
+        depends_on:
+            - account-service
+            - rules-service
                        
         networks:
             - app-network
@@ -39,7 +50,13 @@ services:
         ports: 
             - "8081:8081"
         restart: always
-                               
+
+        depends_on:
+            - auth-ms
+            - account-service
+            - transaction-ms
+            - rules-service
+            - customer-ms              
         networks:
             - app-network
     account-service:
@@ -47,6 +64,11 @@ services:
         ports: 
             - "8086:8086"
         restart: always
+
+        depends_on:
+            - auth-ms
+            - transaction-ms
+            - customer-ms
                                        
         networks:
             - app-network
