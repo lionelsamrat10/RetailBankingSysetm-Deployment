@@ -1,0 +1,55 @@
+version: '3.7'
+services: 
+    customer-ms:
+        image: lionelsamrat10/customer-ms:0.1
+        ports: 
+            - "8085:8085"
+        restart: always
+                                       
+        networks:
+            - app-network
+    
+    rules-service:
+        image: lionelsamrat10/rules-service:0.1
+        ports: 
+            - "8090:8090"
+        restart: always
+       
+        networks:
+            - app-network
+    
+    auth-ms:
+        image: lionelsamrat10/auth-ms:0.1
+        ports: 
+            - "8084:8084"
+        restart: always
+               
+        networks:
+            - app-network
+    transaction-ms:
+        image: lionelsamrat10/transaction-ms:0.1
+        ports: 
+            - "8087:8087"
+        restart: always
+                       
+        networks:
+            - app-network
+    bank-mvc:
+        image: lionelsamrat10/bank-mvc:0.1
+        ports: 
+            - "8081:8081"
+        restart: always
+                               
+        networks:
+            - app-network
+    account-service:
+        image: lionelsamrat10/account-service:0.1
+        ports: 
+            - "8086:8086"
+        restart: always
+                                       
+        networks:
+            - app-network
+# Networks to be created to facilitate communication between containers
+networks:
+    app-network:  
